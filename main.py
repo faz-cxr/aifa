@@ -2,6 +2,7 @@
 import streamlit as st
 import os
 import faiss, pickle
+import openai
 from streamlit_chat import message
 from langchain.agents import Tool
 from langchain import OpenAI
