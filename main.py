@@ -61,7 +61,8 @@ if "past" not in st.session_state:
 
 def get_text():
     st.markdown("""
-    # Chat with Aifa 🧠
+    # Ask Aifa 🧠
+    \n Try asking Aifa a medical question!
     """)
     input_text = st.text_input("Start typing below and click enter ⏎", disabled=False, placeholder="What are beta blockers?", key="input")
     return input_text
