@@ -44,7 +44,7 @@ with st.sidebar:
     # How does it work
     \n*Aifa* has been trained on a large corpus of medical text and can provide accurate responses. 
     \nSimply type your question in the text box and hit enter to get a response.
-    \nFeel free to ask followup questions
+    \nFeel free to ask follow up questions
     """)
     st.markdown(html_temp.format("rgba(55, 53, 47, 0.64)"),unsafe_allow_html=True)
     st.markdown("""
@@ -53,8 +53,6 @@ with st.sidebar:
     unsafe_allow_html=True,
     )
 
-st.header("Chat with Aifa 🧠")
-
 if "generated" not in st.session_state:
     st.session_state["generated"] = []
 
@@ -62,6 +60,9 @@ if "past" not in st.session_state:
     st.session_state["past"] = []
 
 def get_text():
+    st.markdown("""
+    # Chat with Aifa 🧠
+    """)
     input_text = st.text_input("Start typing below and click enter ⏎", disabled=False, placeholder="What are beta blockers?", key="input")
     return input_text
 
