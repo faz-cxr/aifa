@@ -18,7 +18,7 @@ with open("faiss_store.pkl", "rb") as f:
     store = pickle.load(f)
 
 store.index = index
-prompt=load_prompt("prompt.json")
+#prompt=load_prompt("prompt.json")
 chain = ChatVectorDBChain.from_llm(llm=OpenAI(temperature=0), vectorstore=store)
 
 # From here down is all the StreamLit UI.
