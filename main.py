@@ -3,14 +3,10 @@ import streamlit as st
 import os
 import faiss, pickle
 from streamlit_chat import message
-#from langchain import PromptTemplate
 from langchain.agents import Tool
-#from langchain.chains.conversation.memory import ConversationBufferMemory
 from langchain import OpenAI
 from langchain.chains import ChatVectorDBChain
 from langchain.prompts import load_prompt
-#from langchain.agents import initialize_agent
-#from gpt_index import GPTSimpleVectorIndex
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
@@ -23,18 +19,6 @@ with open("faiss_store.pkl", "rb") as f:
 store.index = index
 prompt=load_prompt("prompt.json")
 chain = ChatVectorDBChain.from_llm(llm=OpenAI(temperature=0), vectorstore=store)
-#index = GPTSimpleVectorIndex.load_from_disk('simple_index.json')
-#tools = [
-#    Tool(
-#        name = "Aifa",
-#        func=lambda q: str(index.query(q)),
-#        description="useful for when you want answers to medical queries. The input to this tool should be a complete english sentence.",
-#        return_direct=True
-#    ),
-#]
-#memory = ConversationBufferMemory(memory_key="chat_history")
-#llm=OpenAI(temperature=0)
-#chain = initialize_agent(tools, llm, agent="conversational-react-description", memory=memory)
 
 # From here down is all the StreamLit UI.
 st.set_page_config(page_title="Ask Aifa 🧠", page_icon=":brain:")
