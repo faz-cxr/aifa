@@ -12,7 +12,7 @@ from langchain.prompts import load_prompt
 #from langchain.agents import initialize_agent
 #from gpt_index import GPTSimpleVectorIndex
 
-os.environ["OPENAI_API_KEY"] = "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"
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 #Load the LangChain.
 index = faiss.read_index("docs.index")
