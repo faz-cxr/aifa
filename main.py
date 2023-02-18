@@ -4,6 +4,7 @@ import os
 import faiss, pickle
 import openai
 from streamlit_chat import message
+from streamlit.components.v1 import html
 from langchain.agents import Tool
 from langchain import OpenAI
 from langchain.chains import ChatVectorDBChain
@@ -28,20 +29,22 @@ html_temp = """
                 
                 </div>
                 """
+button = """
+<script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="fazeen" data-color="#5F7FFF" data-emoji=""  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#ffffff" data-coffee-color="#FFDD00" ></script>
+"""
 
 with st.sidebar:
     st.markdown("""
     # About 
     \n*Aifa* is a smart bot that answers medical queries in a **simple language**.
     \n\n**Do not** use *Aifa* as a substitute for professional medical advice.
-    \n\n\nComing Soon: _Sources_!
     """)
     st.markdown(html_temp.format("rgba(55, 53, 47, 0.64)"),unsafe_allow_html=True)
     st.markdown("""
     # How does it work
     \n*Aifa* has been trained on a large corpus of medical text and can provide accurate responses. 
-    \nSimply type your question in the text box and hit enter to get a response. 
-    You can also download the output as txt.
+    \nSimply type your question in the text box and hit enter to get a response.
+    \nFeel free to ask followup questions
     """)
     st.markdown(html_temp.format("rgba(55, 53, 47, 0.64)"),unsafe_allow_html=True)
     st.markdown("""
@@ -77,7 +80,7 @@ footer{
 <style>
 """
 st.markdown(hide, unsafe_allow_html=True)
-
+html(button, height=70, width=220)
 st.markdown(
     """
     <style>
