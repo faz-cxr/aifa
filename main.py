@@ -29,7 +29,7 @@ qa_chain = load_qa_chain(llm=OpenAI(temperature=0), chain_type="stuff",
 chain = VectorDBQA(combine_documents_chain=qa_chain, vectorstore=store, k=4)
 
 # From here down is all the StreamLit UI.
-st.set_page_config(page_title="Ask Aifa 🧠", page_icon=":brain:")
+st.set_page_config(page_title="🧠⚡️", page_icon=":brain:")
 html_temp = """
                 <div style="background-color:{};padding:1px">
                 
@@ -67,7 +67,7 @@ if "past" not in st.session_state:
 
 def get_text():
     st.markdown("""
-    # Ask a medical question 📚
+    # Ask any medical question  👩🏻‍🎓
     """)
     input_text = st.text_input("Start typing below and click enter ⏎", disabled=False, placeholder="What are beta blockers?", key="input")
     return input_text
