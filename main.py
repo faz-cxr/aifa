@@ -7,8 +7,9 @@ from streamlit_chat import message
 from streamlit.components.v1 import html
 from langchain.agents import Tool
 from langchain import OpenAI
-from langchain.chains import ChatVectorDBChain
 from langchain.prompts import load_prompt
+from langchain.chains import VectorDBQA
+from langchain.chains.question_answering import load_qa_chain
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
@@ -19,8 +20,13 @@ with open("faiss_store.pkl", "rb") as f:
     store = pickle.load(f)
 
 store.index = index
-#prompt=load_prompt("prompt.json")
-chain = ChatVectorDBChain.from_llm(llm=OpenAI(temperature=0), vectorstore=store)
+
+prompt = load_prompt('prompt.json')
+
+qa_chain = load_qa_chain(llm=OpenAI(temperature=0), chain_type="stuff",
+                        prompt=prompt)
+
+chain = VectorDBQA(combine_documents_chain=qa_chain, vectorstore=store, k=4)
 
 # From here down is all the StreamLit UI.
 st.set_page_config(page_title="Ask Aifa 🧠", page_icon=":brain:")
@@ -61,8 +67,7 @@ if "past" not in st.session_state:
 
 def get_text():
     st.markdown("""
-    # Ask Aifa 🧠
-    \n Try asking Aifa a medical question!
+    # Ask a medical question 📚
     """)
     input_text = st.text_input("Start typing below and click enter ⏎", disabled=False, placeholder="What are beta blockers?", key="input")
     return input_text
@@ -105,8 +110,8 @@ else:
 
 chat_history = [(user_input, log)]
 if user_input:
-    result = chain({"question":user_input, "chat_history": chat_history})
-    output = f"{result['answer']}"
+    result = chain({"input_documents": chat_history, "query": user_input})
+    output = f"{result['result']}"
 
     st.session_state.past.append(user_input)
     st.session_state.generated.append(output)
