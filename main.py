@@ -29,7 +29,7 @@ qa_chain = load_qa_chain(llm=OpenAI(temperature=0), chain_type="stuff",
 chain = VectorDBQA(combine_documents_chain=qa_chain, vectorstore=store, k=4)
 
 # From here down is all the StreamLit UI.
-st.set_page_config(page_title="🧠⚡️", page_icon=":brain:")
+st.set_page_config(page_title="Ask Aifa 🧠", page_icon=":brain:")
 html_temp = """
                 <div style="background-color:{};padding:1px">
                 
@@ -42,19 +42,19 @@ button = """
 with st.sidebar:
     st.markdown("""
     # About 
-    \n*Aifa* is a smart bot that answers medical queries in a **simple language**.
+    \n*Aifa* is a smart bot that can answer any health-related queries in **simple natural language**.
     \n\n**Do not** use *Aifa* as a substitute for professional medical advice.
     """)
     st.markdown(html_temp.format("rgba(55, 53, 47, 0.64)"),unsafe_allow_html=True)
     st.markdown("""
     # How does it work
     \n*Aifa* has been trained on a large corpus of medical text and can provide accurate responses. 
-    \nSimply type your question in the text box and hit enter to get a response.
-    \nFeel free to ask follow up questions
+    \nSimply type any question on diseases, treatment options and medications in the text box and hit enter to get a response.
+    \nDo not ask follow up questions (for now)
     """)
     st.markdown(html_temp.format("rgba(55, 53, 47, 0.64)"),unsafe_allow_html=True)
     st.markdown("""
-    <a href = "mailto:abc@example.com?subject = Feedback&body = Message">Send Feedback</a>
+    <a href = "mailto:fazeen.nasser@outlook.com?subject = Feedback&body = Message">Send Feedback</a>
     """,
     unsafe_allow_html=True,
     )
@@ -67,7 +67,7 @@ if "past" not in st.session_state:
 
 def get_text():
     st.markdown("""
-    # Ask any medical question  👩🏻‍🎓
+    # Ask any health related query 
     """)
     input_text = st.text_input("Start typing below and click enter ⏎", disabled=False, placeholder="What are beta blockers?", key="input")
     return input_text
@@ -108,9 +108,13 @@ if len(st.session_state["generated"]) < 2 :
 else: 
     log = str(st.session_state["generated"][-2:])
 
-chat_history = [(user_input, log)]
+##### Figure out a better way to include chat histories
+chat_history = [(log, user_input)]
+query = f"{chat_history}"
+print(f"This is queury:\n\n{query}\n\nThis is user input:\n\n{user_input}")
+#####
 if user_input:
-    result = chain({"input_documents": chat_history, "query": user_input})
+    result = chain({"query": user_input})
     output = f"{result['result']}"
 
     st.session_state.past.append(user_input)
