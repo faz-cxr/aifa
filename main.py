@@ -49,7 +49,11 @@ with st.sidebar:
     st.markdown("""
     # How does it work
     \n*Aifa* has been trained on a large corpus of medical text and can provide accurate responses. 
-    \nSimply type any question on diseases, treatment options and medications in the text box and hit enter to get a response.
+    \nYou can ask anything based on: 
+    \nDiseases and Symptoms 
+    \nTreatment options
+    \nMedications and side effects
+    \n... and much more
     \nDo not ask follow up questions (for now)
     """)
     st.markdown(html_temp.format("rgba(55, 53, 47, 0.64)"),unsafe_allow_html=True)
