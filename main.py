@@ -35,9 +35,6 @@ html_temp = """
                 
                 </div>
                 """
-button = """
-<script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="fazeen" data-color="#5F7FFF" data-emoji=""  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#ffffff" data-coffee-color="#FFDD00" ></script>
-"""
 
 with st.sidebar:
     st.markdown("""
@@ -86,14 +83,18 @@ footer{
 <style>
 """
 st.markdown(hide, unsafe_allow_html=True)
+
+button = """
+<a href="https://www.buymeacoffee.com/fazeen" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png" alt="Buy Me A Coffee" style="height: 35px !important;width: 110px !important;" ></a>
+"""
 html(button, height=70, width=220)
 st.markdown(
     """
     <style>
         iframe[width="220"] {
             position: fixed;
-            bottom: 24px;
-            right: 24px;
+            bottom: 0px;
+            right: 0px;
         }
     </style>
     """,
