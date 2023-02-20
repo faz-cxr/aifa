@@ -42,15 +42,15 @@ button = """
 with st.sidebar:
     st.markdown("""
     # About 
-    \n*Aifa* is a smart bot that can answer any health-related queries in **simple natural language**.
+    \n*Aifa* is a smart assistant that can answer any health-related queries in **simple natural language**.
     \n\n**Do not** use *Aifa* as a substitute for professional medical advice.
     """)
     st.markdown(html_temp.format("rgba(55, 53, 47, 0.64)"),unsafe_allow_html=True)
     st.markdown("""
-    # How does it work
+    # How does it work?
     \n*Aifa* has been trained on a large corpus of medical text and can provide accurate responses. 
-    \nAifa can answer queries on diseases, treatment options and medication side effects and much more.
-    \nFeel free to ask follow up questions.
+    \nAifa can answer queries on diseases, treatment options, medication side effects and much more.
+    \nFeel free to ask follow up questions to Aifa.
     """)
     st.markdown(html_temp.format("rgba(55, 53, 47, 0.64)"),unsafe_allow_html=True)
     st.markdown("""
@@ -60,10 +60,9 @@ with st.sidebar:
     )
 
 if "generated" not in st.session_state:
-    st.session_state["generated"] = [""]
-
+    st.session_state["generated"] = []
 if "past" not in st.session_state:
-    st.session_state["past"] = [""]
+    st.session_state["past"] = []
 
 def get_text():
     st.markdown("""
@@ -103,11 +102,17 @@ st.markdown(
 
 user_input = get_text()
 
-prev_a = st.session_state["generated"][-1:]
-prev_q = st.session_state["past"][-1:]
+if len(st.session_state["generated"]) < 1:
+    prev_a = [""]
+else:
+    prev_a = st.session_state["generated"][-1:]
 
-query = '\n'.join([f"Q: {prev_q[0]}\nA:{prev_a[0]}\nQ: {user_input}\nA: "])
-print(query)
+if len(st.session_state["past"]) < 1:
+    prev_q = [""]
+else:
+    prev_q = st.session_state["past"][-1:]
+
+query = '\n'.join([f"Q: {prev_q[0]}\nA: {prev_a[0]}\nQ: {user_input}\nA: "])
 if user_input:
     result = chain({"query": query})
     output = f"{result['result']}"
