@@ -49,12 +49,8 @@ with st.sidebar:
     st.markdown("""
     # How does it work
     \n*Aifa* has been trained on a large corpus of medical text and can provide accurate responses. 
-    \nYou can ask anything based on: 
-    \nDiseases and Symptoms 
-    \nTreatment options
-    \nMedications and side effects
-    \n... and much more
-    \nDo not ask follow up questions (for now)
+    \nAifa can answer queries on diseases, treatment options and medication side effects and much more.
+    \nFeel free to ask follow up questions.
     """)
     st.markdown(html_temp.format("rgba(55, 53, 47, 0.64)"),unsafe_allow_html=True)
     st.markdown("""
@@ -64,16 +60,16 @@ with st.sidebar:
     )
 
 if "generated" not in st.session_state:
-    st.session_state["generated"] = []
+    st.session_state["generated"] = ["Autism is a developmental disorder that affects how people interact with others, communicate, and behave. People with autism often experience difficulties with social interaction, communication, and repetitive behaviors. They may also have difficulty understanding nonverbal cues such as facial expressions, body language, and tone of voice."]
 
 if "past" not in st.session_state:
-    st.session_state["past"] = []
+    st.session_state["past"] = ["What is autism?"]
 
 def get_text():
     st.markdown("""
-    # Ask any health related query 
+    # Ask any health related query!
     """)
-    input_text = st.text_input("Start typing below and click enter ⏎", disabled=False, placeholder="What are beta blockers?", key="input")
+    input_text = st.text_input("Start typing below and click enter ⏎", disabled=False, placeholder="How can it be managed?", key="input")
     return input_text
 
 hide="""
@@ -107,18 +103,13 @@ st.markdown(
 
 user_input = get_text()
 
-if len(st.session_state["generated"]) < 2 :
-    log = str(st.session_state["generated"].copy())
-else: 
-    log = str(st.session_state["generated"][-2:])
+prev_a = st.session_state["generated"][-1:]
+prev_q = st.session_state["past"][-1:]
 
-##### Figure out a better way to include chat histories
-chat_history = [(log, user_input)]
-query = f"{chat_history}"
-print(f"This is queury:\n\n{query}\n\nThis is user input:\n\n{user_input}")
-#####
+query = '\n'.join([f"Q: {prev_q[0]}\nA:{prev_a[0]}\nQ: {user_input}\nA: "])
+print(query)
 if user_input:
-    result = chain({"query": user_input})
+    result = chain({"query": query})
     output = f"{result['result']}"
 
     st.session_state.past.append(user_input)
