@@ -60,10 +60,10 @@ with st.sidebar:
     )
 
 if "generated" not in st.session_state:
-    st.session_state["generated"] = ["Autism is a developmental disorder that affects how people interact with others, communicate, and behave. People with autism often experience difficulties with social interaction, communication, and repetitive behaviors. They may also have difficulty understanding nonverbal cues such as facial expressions, body language, and tone of voice."]
+    st.session_state["generated"] = [""]
 
 if "past" not in st.session_state:
-    st.session_state["past"] = ["What is autism?"]
+    st.session_state["past"] = [""]
 
 def get_text():
     st.markdown("""
