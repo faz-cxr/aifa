@@ -55,6 +55,11 @@ with st.sidebar:
     """,
     unsafe_allow_html=True,
     )
+    st.markdown("""
+    <a href="https://www.buymeacoffee.com/fazeen" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png" alt="Buy Me A Coffee" style="height: 35px;width: 110px ;" ></a>
+    """,
+    unsafe_allow_html=True,
+    )
 
 if "generated" not in st.session_state:
     st.session_state["generated"] = []
@@ -83,23 +88,6 @@ footer{
 <style>
 """
 st.markdown(hide, unsafe_allow_html=True)
-
-button = """
-<a href="https://www.buymeacoffee.com/fazeen" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png" alt="Buy Me A Coffee" style="height: 35px !important;width: 110px !important;" ></a>
-"""
-html(button, height=70, width=220)
-st.markdown(
-    """
-    <style>
-        iframe[width="220"] {
-            position: fixed;
-            bottom: 0px;
-            right: 0px;
-        }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
 
 user_input = get_text()
 
