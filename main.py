@@ -39,7 +39,7 @@ html_temp = """
 with st.sidebar:
     st.markdown("""
     # About 
-    \n*Aifa is here to provide you with accurate and easy-to-understand responses in **natural language**.
+    \n*Aifa* is here to provide you with accurate and easy-to-understand responses in **natural language**.
     \n\nDisclaimer: **Do not** use *Aifa* as a substitute for professional medical advice.
     """)
     st.markdown(html_temp.format("rgba(55, 53, 47, 0.64)"),unsafe_allow_html=True)
