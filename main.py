@@ -39,14 +39,14 @@ html_temp = """
 with st.sidebar:
     st.markdown("""
     # About 
-    \n*Aifa* is a smart assistant that can answer any health-related queries in **simple natural language**.
-    \n\n**Do not** use *Aifa* as a substitute for professional medical advice.
+    \n*Aifa is here to provide you with accurate and easy-to-understand responses in **natural language**.
+    \n\nDisclaimer: **Do not** use *Aifa* as a substitute for professional medical advice.
     """)
     st.markdown(html_temp.format("rgba(55, 53, 47, 0.64)"),unsafe_allow_html=True)
     st.markdown("""
     # How does it work?
     \n*Aifa* has been trained on a large corpus of medical text and can provide accurate responses. 
-    \nAifa can answer queries on diseases, treatment options, medication side effects and much more.
+    \nFrom diseases to treatment options, medication side effects, and much more, Aifa has got you covered.
     \nFeel free to ask follow up questions to Aifa.
     """)
     st.markdown(html_temp.format("rgba(55, 53, 47, 0.64)"),unsafe_allow_html=True)
