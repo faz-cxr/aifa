@@ -23,7 +23,7 @@ store.index = index
 
 prompt = load_prompt('prompt.json')
 
-qa_chain = load_qa_chain(llm=OpenAI(temperature=0), chain_type="stuff",
+qa_chain = load_qa_chain(llm=OpenAI(temperature=0.7), chain_type="stuff",
                         prompt=prompt)
 
 chain = VectorDBQA(combine_documents_chain=qa_chain, vectorstore=store, k=4)
