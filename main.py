@@ -70,7 +70,7 @@ def get_text():
     st.markdown("""
     # Curious about your health? Aifa has answers!
     """)
-    input_text = st.text_input("Start typing below and click enter ⏎", disabled=False, placeholder="What is the difference between a cold and flu?", key="input")
+    input_text = st.text_input("Start typing below and click enter ⏎", disabled=False, placeholder="... What is the difference between a cold and flu?", key="input")
     return input_text
 
 hide="""
