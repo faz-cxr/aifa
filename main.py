@@ -68,8 +68,7 @@ if "past" not in st.session_state:
 
 def get_text():
     st.markdown("""
-    # Curious about your health? \n
-    # Aifa has answers!
+    ## Curious about your health? Aifa has answers!
     """)
     input_text = st.text_input("Refresh the page to reset the conversation...", disabled=False, placeholder="Start typing a medical question here and press enter ⏎", key="input")
     return input_text
