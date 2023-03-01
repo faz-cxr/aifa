@@ -70,7 +70,7 @@ def get_text():
     st.markdown("""
     # Curious about your health? Aifa has answers!
     """)
-    input_text = st.text_input("Refresh the page to reset the conversation...", disabled=False, placeholder="Start typing here and press enter ⏎", key="input")
+    input_text = st.text_input("Ask anything medical-related!\nRefresh the page to reset the conversation...", disabled=False, placeholder="Start typing here and press enter ⏎", key="input")
     return input_text
 
 hide="""
